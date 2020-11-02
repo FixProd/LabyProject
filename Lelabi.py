@@ -33,7 +33,7 @@ delay = 0
 nametxt = ''
 
 gen = 1
-difficultTexts = ['Facile','Normal','Hard']
+difficultTexts = ['Facile','Normal']
 difficultText = 'Normal'
 difficult = 1
 sizeDiff = [(10,10),(25,25),(60,30),(10,10)]
