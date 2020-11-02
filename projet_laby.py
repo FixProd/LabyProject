@@ -31,10 +31,11 @@ def show_next1():
 
 #On ajoute le 2 images pour les boutons "Quitter" et "Mode 1".
 stop_image = PhotoImage(file ="buttonquit.png")
-mi_but=PhotoImage(file="button.png")
+mi_but=PhotoImage(file="buttonmode2.png")
+mi_but2=PhotoImage(file="buttonmode1.png")
 
 #Partie des boutons.
-Bouton_Lab1=Button(Fenetre1,image=mi_but,borderwidth=0,command=show_next,font = ("Helvetica", 15))
+Bouton_Lab1=Button(Fenetre1,image=mi_but2,borderwidth=0,command=show_next,font = ("Helvetica", 15))
 Bouton_Lab1.place(x=345,y=260)
 
 Bouton_Lab2=Button(Fenetre1,image=mi_but,borderwidth=0,command=show_next1,font = ("Helvetica", 20))
