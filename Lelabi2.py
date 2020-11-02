@@ -33,9 +33,9 @@ delay = 0
 nametxt = ''
 
 gen = 1
-difficultTexts = ['Facile','Normal','Hard']
-difficultText = 'Normal'
-difficult = 1
+difficultTexts = ['Hard','Extrême']
+difficultText = 'Hard'
+difficult = 3
 sizeDiff = [(10,10),(25,25),(60,30),(10,10)]
 xDiff, yDiff = 25,25
 colorTrB = (255, 0, 0)
