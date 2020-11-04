@@ -26,16 +26,16 @@ finish, play, replay, settings, blockR, tracer = [False] * 6
 t0once, t1once, saveonce, regenonce, running = [True] * 5
 
 # Autres variables
-
+settings = True
 mazebase = None
 playerloc = None
 delay = 0
 nametxt = ''
 
 gen = 1
-difficultTexts = ['Hard','Extrême']
-difficultText = 'Hard'
-difficult = 3
+difficultTexts = ["Hard","Extrême"]
+difficultText = "Hard"
+difficult = 1
 sizeDiff = [(10,10),(25,25),(60,30),(10,10)]
 xDiff, yDiff = 25,25
 colorTrB = (255, 0, 0)
@@ -104,10 +104,6 @@ def set_difficult(i):
     (xDiff, yDiff) = sizeDiff[difficult]
 
 
-def retour():
-    import projet_laby.py
-
-
 # Fonction pour se déplacer
 
 def move(way,liste):
@@ -140,10 +136,6 @@ def move(way,liste):
             liste[fy] = liste[fy][:fx] + ['9','A','B','C'][['N','S','O','E'].index(way)] + liste[fy][(fx+1):]
     return liste
 
-def retour():
-    if finish == True:
-        import projet_laby.py
-
 # On lance une boucle qui modifiera l'affichage pygame
 
 while running:
@@ -152,6 +144,7 @@ while running:
     clock.tick(60)
     window.fill(colorFond)
 
+
     # De base, on se trouve sur le menu avec deux choix : Jouer un nouveau niveau ou rejouer un ancien pour battre son score
 
     if play == False and replay == False and settings == False:
@@ -159,15 +152,10 @@ while running:
 
         buttonEasy, buttonNormal, buttonNormal = [None] * 3
 
-        pygame.draw.rect(window, [0, 100, 100], buttonPlay)
-        playtxt = font.render('Appuyez ici pour jouer !',1,(255,255,255))
-        window.blit(playtxt, (130,230) )
-
 
     # Menu pour choisir un surnom, choisir la difficulté, choisir le type de génération et si on laisse une trace derriere le joueur
 
     if settings == True:
-        buttonPlay, buttonReplay = [None] * 2
 
         buttonSwitchL = pygame.Rect((xWindow/2-200), (yWindow/2-125), 50, 50)
         buttonNormal = pygame.Rect((xWindow/2-125), (yWindow/2-125), 250, 50)
@@ -405,12 +393,6 @@ while running:
                         colorTrB = (255,0,0)
                         tracer = False
 
-
-            if buttonPlay is not None:
-
-                if buttonPlay.collidepoint(mouse_pos) and settings == False:              # Si on est dans le menu et qu'on clique sur le bouton play on met la variable play à Vrai
-                    settings, saveonce, t0once, t1once = [True] * 4
-                    blockR = False
 
 pygame.quit()
 import projet_laby.py

@@ -26,7 +26,7 @@ finish, play, replay, settings, blockR, tracer = [False] * 6
 t0once, t1once, saveonce, regenonce, running = [True] * 5
 
 # Autres variables
-
+settings = True
 mazebase = None
 playerloc = None
 delay = 0
@@ -158,10 +158,6 @@ while running:
         buttonPlay = pygame.Rect((xWindow/2-130), (yWindow/2-30), 270, 50)
 
         buttonEasy, buttonNormal, buttonNormal = [None] * 3
-
-        pygame.draw.rect(window, [0, 100, 100], buttonPlay)
-        playtxt = font.render('Appuyez ici pour jouer !',1,(255,255,255))
-        window.blit(playtxt, (130,230) )
 
 
     # Menu pour choisir un surnom, choisir la difficulté, choisir le type de génération et si on laisse une trace derriere le joueur
@@ -406,11 +402,6 @@ while running:
                         tracer = False
 
 
-            if buttonPlay is not None:
-
-                if buttonPlay.collidepoint(mouse_pos) and settings == False:              # Si on est dans le menu et qu'on clique sur le bouton play on met la variable play à Vrai
-                    settings, saveonce, t0once, t1once = [True] * 4
-                    blockR = False
 
 pygame.quit()
 import projet_laby.py
