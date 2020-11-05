@@ -33,7 +33,7 @@ def show_next1():
     import Lelabi2.py
 
 
-#On ajoute le 2 images pour les boutons "Quitter" et "Mode 1".
+#On ajoute le 2 images pour les boutons "Quitter","Mode 1" et "Mode 2".
 stop_image = PhotoImage(file ="buttonquit.png")
 mi_but=PhotoImage(file="buttonmode2.png")
 mi_but2=PhotoImage(file="buttonmode1.png")
