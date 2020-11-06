@@ -393,6 +393,48 @@ while running:
                         colorTrB = (255,0,0)
                         tracer = False
 
+# Fonction qui réduit le labyrinthe (pour le mode Extreme)
+
+def var(v):
+    if v > 10:
+        return 10, 11
+    if v <= 10:
+        return 10-(10-v), 11+(10-v)
+
+def reduce_maze(maze):
+
+    for y in range(len(maze)):
+        for x in range(len(maze[y])):
+            if maze[y][x] in ['2','9','A','B','C','D']:
+                (ax, ay) = (x, y)
+
+    newmaze = []
+    xm, xp = var(ax)
+    ym, yp = var(ay)
+    for y in range(len(maze)):
+        if y >= ay-ym and y < ay+yp:
+            row = ''
+            for x in range(len(maze[y])):
+                if x >= ax-xm and x < ax+xp:
+                    row += maze[y][x]
+            newmaze.append(row)
+    return newmaze, (ax, ay)
+
+
+def string_to_maze(string):
+    mazefin = []
+    maze = ''
+
+    for i in string:
+        if i in ['0','1','2','3','5','6','7','8']:
+            maze += i
+        if i == '4':
+            maze += '1'
+        if i == ',':
+            mazefin.append(maze)
+            maze = ''
+    mazefin.append(maze)
+    return mazefin
 
 pygame.quit()
 import projet_laby.py
