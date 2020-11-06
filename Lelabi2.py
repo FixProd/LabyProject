@@ -31,7 +31,6 @@ mazebase = None
 playerloc = None
 delay = 0
 nametxt = ''
-
 gen = 1
 difficultTexts = ["Hard","Extrême"]
 difficultText = "Hard"

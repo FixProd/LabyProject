@@ -1,4 +1,4 @@
-﻿# Créé par Fix, le 31/10/2020 en Python 3.7
+﻿# Créé par Fix,Xÿm,livio le 31/10/2020 en Python 3.7
 # On importe les librairies
 from tkinter import *
 import pygame
@@ -159,7 +159,7 @@ while running:
         buttonEasy, buttonNormal, buttonNormal = [None] * 3
 
 
-    # Menu pour choisir un surnom, choisir la difficulté, choisir le type de génération et si on laisse une trace derriere le joueur
+    # Menu pour un choisir la difficulté et si on laisse une trace derriere le joueur
 
     if settings == True:
         buttonPlay, buttonReplay = [None] * 2
