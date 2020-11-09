@@ -134,6 +134,11 @@ def move(way,liste):
             liste[fy] = liste[fy][:fx] + ['9','A','B','C'][['N','S','O','E'].index(way)] + liste[fy][(fx+1):]
     return liste
 
+# fonction qui permet de retourner au menu principal.
+def quit ():
+    pygame.quit()
+    import projet_laby.py
+
 # On lance une boucle qui modifiera l'affichage pygame
 
 while running:
@@ -189,6 +194,10 @@ while running:
         starttxt = font.render("Let's Go !",1,(255,255,255))
         window.blit(starttxt, (205,360) )
 
+        buttonquit = pygame.Rect((xWindow/1-205), (yWindow/2+200), 200, 50)
+        pygame.draw.rect(window, [0, 100, 100], buttonquit)
+        quittxt = font.render("Menu Principal !",1,(255,255,255))
+        window.blit(quittxt, (320,460) )
 
     # Si on choisit de jouer
 
@@ -294,14 +303,12 @@ while running:
         if not keys[K_r]:
             delay = 0
 
-    if replay == True:
-        draw_csv()
-
     # Si on a finit le niveau
 
     if finish == True:
         colorFond = (255,255,255)
-        play, replay, finish, settings = [False] * 4                     # On remet les variables à faux
+        play, replay, finish, = [False] * 3
+        settings = True                     # On remet les variables à faux
         update_size_screen(25,25)                                      # On remet la taille de l'écran à la normale
     pygame.display.flip()
     pygame.display.update()
@@ -390,11 +397,11 @@ while running:
                     else:
                         colorTrB = (255,0,0)
                         tracer = False
-
+                if buttonquit.collidepoint(mouse_pos):
+                    quit()
 
 
 pygame.quit()
-import projet_laby.py
 
 
 

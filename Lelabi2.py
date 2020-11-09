@@ -178,9 +178,11 @@ def string_to_maze(string):
     mazefin.append(maze)
     return mazefin
 
+# fonction qui permet de retourner au menu principal.
 def quit ():
     pygame.quit()
     import projet_laby.py
+
 # On lance une boucle qui modifiera l'affichage pygame
 while running:
 
@@ -345,15 +347,13 @@ while running:
         if not keys[K_r]:
             delay = 0
 
-    if replay == True:
-        draw_csv()
-
     # Si on a finit le niveau
 
     if finish == True:
         colorFond = (255,255,255)
-        play, replay, finish, settings = [False] * 4                     # On remet les variables à faux
-        update_size_screen(25,25)                                      # On remet la taille de l'écran à la normale
+        play, replay, finish, = [False] * 3
+        settings = True                                                # On remet les variables à faux
+        update_size_screen(25,25)                                   # On remet la taille de l'écran à la normale
     pygame.display.flip()
     pygame.display.update()
 
