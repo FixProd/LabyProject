@@ -32,7 +32,7 @@ playerloc = None
 delay = 0
 nametxt = ''
 gen = 1
-difficultTexts = ["Hard","Extrême"]
+difficultTexts = ["","","Hard","Extrême"]
 difficultText = "Hard"
 difficult = 1
 sizeDiff = [(10,10),(25,25),(60,30),(10,10)]
@@ -135,8 +135,53 @@ def move(way,liste):
             liste[fy] = liste[fy][:fx] + ['9','A','B','C'][['N','S','O','E'].index(way)] + liste[fy][(fx+1):]
     return liste
 
-# On lance une boucle qui modifiera l'affichage pygame
+# Fonction qui réduit le labyrinthe (pour le mode Extreme)
 
+def var(v):
+    if v > 10:
+        return 10, 11
+    if v <= 10:
+        return 10-(10-v), 11+(10-v)
+
+def reduce_maze(maze):
+
+    for y in range(len(maze)):
+        for x in range(len(maze[y])):
+            if maze[y][x] in ['2','9','A','B','C','D']:
+                (ax, ay) = (x, y)
+
+    newmaze = []
+    xm, xp = var(ax)
+    ym, yp = var(ay)
+    for y in range(len(maze)):
+        if y >= ay-ym and y < ay+yp:
+            row = ''
+            for x in range(len(maze[y])):
+                if x >= ax-xm and x < ax+xp:
+                    row += maze[y][x]
+            newmaze.append(row)
+    return newmaze, (ax, ay)
+
+
+def string_to_maze(string):
+    mazefin = []
+    maze = ''
+
+    for i in string:
+        if i in ['0','1','2','3','5','6','7','8']:
+            maze += i
+        if i == '4':
+            maze += '1'
+        if i == ',':
+            mazefin.append(maze)
+            maze = ''
+    mazefin.append(maze)
+    return mazefin
+
+def quit ():
+    pygame.quit()
+    import projet_laby.py
+# On lance une boucle qui modifiera l'affichage pygame
 while running:
 
     # On définit le taux de rafraichissement de l'affichage sur 60 Hz et on remplit le fond d'une couleur blanche
@@ -189,6 +234,11 @@ while running:
         pygame.draw.rect(window, [0, 100, 100], buttonStart)
         starttxt = font.render("Let's Go !",1,(255,255,255))
         window.blit(starttxt, (205,360) )
+
+        buttonquit = pygame.Rect((xWindow/1-205), (yWindow/2+200), 200, 50)
+        pygame.draw.rect(window, [0, 100, 100], buttonquit)
+        quittxt = font.render("Menu Principal !",1,(255,255,255))
+        window.blit(quittxt, (320,460) )
 
 
     # Si on choisit de jouer
@@ -347,8 +397,9 @@ while running:
                         buff = move('O',buff)
                         liste, playerloc = reduce_maze(buff)
 
-            if event.key == K_b:                                                    # Touche B -> Touche Retour
-                play, replay, settings, finish, tracer = [False] * 5
+            if event.key == K_b:
+                play = False
+                settings = True                                             # Touche B -> Touche Retour
                 update_size_screen(25,25)
                 liste, buff, mazebase = [None] * 3
                 colorFond = (255,255,255)
@@ -363,7 +414,7 @@ while running:
                     set_difficult(-1)
 
                 if buttonStart.collidepoint(mouse_pos):
-                    if difficult != 3:
+                    if difficult <= 3:
                         gen_new_maze(xDiff,yDiff)
                     if difficult == 3:
                         gen_new_maze(60,30)
@@ -391,52 +442,11 @@ while running:
                     else:
                         colorTrB = (255,0,0)
                         tracer = False
+                if buttonquit.collidepoint(mouse_pos):
+                    quit()
 
-# Fonction qui réduit le labyrinthe (pour le mode Extreme)
-
-def var(v):
-    if v > 10:
-        return 10, 11
-    if v <= 10:
-        return 10-(10-v), 11+(10-v)
-
-def reduce_maze(maze):
-
-    for y in range(len(maze)):
-        for x in range(len(maze[y])):
-            if maze[y][x] in ['2','9','A','B','C','D']:
-                (ax, ay) = (x, y)
-
-    newmaze = []
-    xm, xp = var(ax)
-    ym, yp = var(ay)
-    for y in range(len(maze)):
-        if y >= ay-ym and y < ay+yp:
-            row = ''
-            for x in range(len(maze[y])):
-                if x >= ax-xm and x < ax+xp:
-                    row += maze[y][x]
-            newmaze.append(row)
-    return newmaze, (ax, ay)
-
-
-def string_to_maze(string):
-    mazefin = []
-    maze = ''
-
-    for i in string:
-        if i in ['0','1','2','3','5','6','7','8']:
-            maze += i
-        if i == '4':
-            maze += '1'
-        if i == ',':
-            mazefin.append(maze)
-            maze = ''
-    mazefin.append(maze)
-    return mazefin
 
 pygame.quit()
-import projet_laby.py
 
 
 

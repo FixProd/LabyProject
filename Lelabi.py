@@ -102,11 +102,6 @@ def set_difficult(i):
 
     (xDiff, yDiff) = sizeDiff[difficult]
 
-
-def retour():
-    import projet_laby.py
-
-
 # Fonction pour se déplacer
 
 def move(way,liste):
@@ -138,10 +133,6 @@ def move(way,liste):
             liste[y] = liste[y][:x] + '4' + liste[y][(x+1):]
             liste[fy] = liste[fy][:fx] + ['9','A','B','C'][['N','S','O','E'].index(way)] + liste[fy][(fx+1):]
     return liste
-
-def retour():
-    if finish == True:
-        import projet_laby.py
 
 # On lance une boucle qui modifiera l'affichage pygame
 
